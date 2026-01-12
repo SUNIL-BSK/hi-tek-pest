@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hi-Tek Pest Control</title>
+    <title>Hi-Tek Pest Control Service</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- React & ReactDOM -->
@@ -77,12 +77,12 @@
             const [activePestTab, setActivePestTab] = useState('rodents');
 
             const companyInfo = {
-                name: "Hi-Tek Pest Control",
+                name: "Hi-Tek Pest Control Service",
                 established: "June 1999",
                 tagline: "Specialist in General Disinfestation, Rodent & Termite Control",
                 contact: {
                     phone1: "94440 25244",
-                    phone2: "94443 97668",
+                    phone2: "94449 28398",
                     email: "hitekpestcontrol@yahoo.com",
                     address: "No 74A, Velachery Main Road, Velachery, Chennai - 42",
                     mapUrl: "https://maps.app.goo.gl/vUNy5v4t1Y2uRPuE7"
@@ -92,6 +92,7 @@
                     pan: "AAEFH2836H",
                     esi: "51-55692-101",
                     epf: "TN/TBM/60564",
+                    msme: "UDYAM-TN-02-0088055",
                     ssi: "330294158 (05 Dec 2006)"
                 }
             };
@@ -184,8 +185,8 @@
                                         <Icon name="shield-check" className="w-7 h-7 text-white" />
                                     </div>
                                     <div className="ml-3">
-                                        <span className="text-xl font-bold tracking-tight text-blue-900 block leading-none">HI-TEK</span>
-                                        <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Pest Control</span>
+                                        <span className="text-xl font-bold tracking-tight text-blue-900 block leading-none uppercase">HI-TEK</span>
+                                        <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Pest Control Service</span>
                                     </div>
                                 </div>
                                 
@@ -204,7 +205,7 @@
                                             <Icon name="phone-call" className="w-3.5 h-3.5 mr-2 text-orange-500" /> {companyInfo.contact.phone2}
                                         </a>
                                     </div>
-                                    <button onClick={() => scrollToSection('contact')} className="bg-blue-600 text-white px-7 py-3 rounded-xl font-black text-sm hover:bg-blue-700 transition shadow-xl shadow-blue-100 tracking-wider">
+                                    <button onClick={() => scrollToSection('contact')} className="bg-blue-600 text-white px-7 py-3 rounded-xl font-black text-sm hover:bg-blue-700 transition shadow-xl shadow-blue-100 uppercase tracking-wider">
                                         Book Inspection
                                     </button>
                                 </div>
@@ -218,9 +219,9 @@
                         </div>
                         {isMenuOpen && (
                             <div className="md:hidden bg-white border-t px-4 py-8 space-y-6 shadow-2xl animate-in slide-in-from-top">
-                                <button onClick={() => scrollToSection('services')} className="block text-2xl font-black text-blue-900">Services</button>
-                                <button onClick={() => scrollToSection('profile')} className="block text-2xl font-black text-blue-900">Profile</button>
-                                <button onClick={() => scrollToSection('pest-guide')} className="block text-2xl font-black text-blue-900">Pest Guide</button>
+                                <button onClick={() => scrollToSection('services')} className="block text-2xl font-black text-blue-900 uppercase">Services</button>
+                                <button onClick={() => scrollToSection('profile')} className="block text-2xl font-black text-blue-900 uppercase">Profile</button>
+                                <button onClick={() => scrollToSection('pest-guide')} className="block text-2xl font-black text-blue-900 uppercase">Pest Guide</button>
                                 <div className="pt-4 space-y-4 border-t border-slate-100">
                                     <a href={`tel:${companyInfo.contact.phone1}`} className="flex items-center text-blue-900 font-black text-lg">
                                         <Icon name="phone-call" className="w-5 h-5 mr-3 text-orange-500" /> {companyInfo.contact.phone1}
@@ -241,8 +242,8 @@
                                 <Icon name="award" className="w-4 h-4 mr-2 text-orange-400" /> 25 Years of Excellence
                             </div>
                             <h1 className="text-5xl md:text-8xl font-black text-white mb-8 leading-[1.1] tracking-tighter text-shadow uppercase">
-                                FINDING ROOT CAUSE<br />
-                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-cyan-200">PROVIDING REMEDY</span>
+                                HI-TEK PEST CONTROL SERVICE<br />
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-cyan-200">FINDING ROOT CAUSE PROVIDING REMEDY</span>
                             </h1>
                             <p className="text-xl md:text-2xl text-blue-100/80 max-w-3xl mx-auto mb-12 font-medium">
                                 Proprietorship since 1999. Specialized in combining Chemistry, Biology, and Pest Science to protect Chennai's infrastructure.
@@ -263,10 +264,10 @@
                         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                             <div className="grid lg:grid-cols-2 gap-20 items-center">
                                 <div>
-                                    <div className="inline-flex items-center px-4 py-1.5 bg-blue-100 text-blue-700 rounded-full text-[10px] font-black tracking-widest mb-6">
+                                    <div className="inline-flex items-center px-4 py-1.5 bg-blue-100 text-blue-700 rounded-full text-[10px] font-black uppercase tracking-widest mb-6">
                                         Our Philosophy
                                     </div>
-                                    <h2 className="text-4xl font-black text-blue-900 mb-8 tracking-tighter">Prevention over Control</h2>
+                                    <h2 className="text-4xl font-black text-blue-900 mb-8 tracking-tighter uppercase">Prevention over Control</h2>
                                     <div className="space-y-8 text-slate-600 font-medium text-lg leading-relaxed">
                                         <div className="flex items-start bg-blue-50/50 p-6 rounded-3xl border border-blue-100/50 transition hover:bg-blue-50">
                                             <Icon name="target" className="w-8 h-8 mr-6 text-blue-600 shrink-0 mt-1" />
@@ -289,14 +290,14 @@
                                         <div className="flex gap-6">
                                             <Icon name="microscope" className="w-12 h-12 text-orange-400 shrink-0" />
                                             <div>
-                                                <h4 className="font-bold text-lg mb-1 tracking-tight text-white uppercase">Broad Spectrum Action</h4>
+                                                <h4 className="font-bold text-lg mb-1 uppercase tracking-tight text-white uppercase">Broad Spectrum Action</h4>
                                                 <p className="text-sm">Synthetic Pyrethroids with long-lasting effect and low toxicity to humans.</p>
                                             </div>
                                         </div>
                                         <div className="flex gap-6">
                                             <Icon name="leaf" className="w-12 h-12 text-green-400 shrink-0" />
                                             <div>
-                                                <h4 className="font-bold text-lg mb-1 tracking-tight text-white uppercase">Environmental Safety</h4>
+                                                <h4 className="font-bold text-lg mb-1 uppercase tracking-tight text-white uppercase">Environmental Safety</h4>
                                                 <p className="text-sm">Odorless, Non-staining, and Bio-degradable components safe for inhabitants and animals.</p>
                                             </div>
                                         </div>
@@ -373,7 +374,7 @@
                                                 <p className="text-sm font-medium leading-relaxed text-blue-50/80 uppercase">{pestLibrary[activePestTab].prevention}</p>
                                             </div>
                                             <div className="bg-white/5 backdrop-blur-md p-8 rounded-3xl border border-white/10">
-                                                <h4 className="text-orange-400 font-black text-[10px] tracking-widest mb-4 flex items-center uppercase"><Icon name="zap" className="w-4 h-4 mr-2" /> Scientific Fix</h4>
+                                                <h4 className="text-orange-400 font-black text-[10px] uppercase tracking-widest mb-4 flex items-center uppercase"><Icon name="zap" className="w-4 h-4 mr-2" /> Scientific Fix</h4>
                                                 <p className="text-sm font-medium leading-relaxed text-blue-50/80 uppercase">{pestLibrary[activePestTab].method}</p>
                                             </div>
                                         </div>
@@ -383,7 +384,7 @@
                         </div>
                     </section>
 
-                    {/* Secure Your Premises Section with Netlify Forms enabled */}
+                    {/* Secure Your Premises Section */}
                     <section id="contact" className="py-24 bg-[#e5e7eb] flex items-center justify-center px-4 scroll-mt-20">
                         <div className="max-w-7xl w-full flex flex-col md:flex-row bg-white rounded-[4rem] shadow-2xl overflow-hidden min-h-[600px]">
                             <div className="md:w-[42%] bg-[#426bd5] p-12 md:p-16 flex flex-col justify-between text-white">
@@ -459,23 +460,26 @@
                                 <div className="col-span-1">
                                     <div className="flex items-center text-white mb-8 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
                                         <Icon name="shield-check" className="w-8 h-8 mr-3 text-blue-500" />
-                                        <span className="text-2xl font-black tracking-tight uppercase leading-none uppercase leading-none">HI-TEK</span>
+                                        <span className="text-2xl font-black tracking-tight uppercase leading-none uppercase leading-none uppercase">HI-TEK</span>
                                     </div>
-                                    <p className="text-sm leading-relaxed font-medium mb-8 uppercase">Established 1999. Experts in combining Chemistry of Pesticides and Biology of Pests.</p>
+                                    <p className="text-sm leading-relaxed font-medium mb-8 uppercase text-white/80">HI-TEK PEST CONTROL SERVICE</p>
+                                    <p className="text-xs leading-relaxed font-medium mb-8 uppercase text-slate-400">Established 1999. Experts in combining Chemistry of Pesticides and Biology of Pests.</p>
                                 </div>
                                 
                                 <div>
-                                    <h4 className="text-white font-black mb-10 uppercase text-xs tracking-[0.3em] uppercase">Compliance</h4>
-                                    <ul className="space-y-4 text-[10px] font-mono uppercase">
+                                    <h4 className="text-white font-black mb-10 uppercase text-xs tracking-[0.3em] uppercase">Statutory Compliance</h4>
+                                    <ul className="space-y-4 text-[10px] font-mono">
                                         <li className="flex justify-between border-b border-white/5 pb-2"><span>GST</span> <span className="text-white">{companyInfo.regs.gst}</span></li>
                                         <li className="flex justify-between border-b border-white/5 pb-2"><span>PAN</span> <span className="text-white">{companyInfo.regs.pan}</span></li>
                                         <li className="flex justify-between border-b border-white/5 pb-2"><span>ESI</span> <span className="text-white">{companyInfo.regs.esi}</span></li>
+                                        <li className="flex justify-between border-b border-white/5 pb-2"><span>EPF</span> <span className="text-white">{companyInfo.regs.epf}</span></li>
+                                        <li className="flex flex-col border-b border-white/5 pb-2"><span className="mb-1">MSME Regn No</span> <span className="text-white">{companyInfo.regs.msme}</span></li>
                                     </ul>
                                 </div>
 
                                 <div>
                                     <h4 className="text-white font-black mb-10 uppercase text-xs tracking-[0.3em] uppercase">Services</h4>
-                                    <ul className="space-y-4 text-xs font-bold uppercase tracking-widest uppercase">
+                                    <ul className="space-y-4 text-[10px] font-bold tracking-widest uppercase">
                                         <li className="hover:text-blue-400 cursor-pointer flex items-center transition-colors"><Icon name="chevron-right" className="w-3 h-3 mr-2 text-orange-500" /> Larvicidal Fogging</li>
                                         <li className="hover:text-blue-400 cursor-pointer flex items-center transition-colors"><Icon name="chevron-right" className="w-3 h-3 mr-2 text-orange-500" /> Burrow Fumigation</li>
                                         <li className="hover:text-blue-400 cursor-pointer flex items-center transition-colors"><Icon name="chevron-right" className="w-3 h-3 mr-2 text-orange-500" /> Soil Saturation</li>
@@ -487,18 +491,18 @@
                                     <h4 className="text-white font-black mb-10 uppercase text-xs tracking-[0.3em] uppercase uppercase">Contact</h4>
                                     <div className="space-y-6">
                                         <div>
-                                            <div className="text-[10px] font-black uppercase tracking-widest text-slate-600 mb-2">Address</div>
+                                            <div className="text-[10px] font-black tracking-widest text-slate-600 mb-2 uppercase">Address</div>
                                             <p className="text-[10px] leading-relaxed font-black uppercase text-slate-300 uppercase">{companyInfo.contact.address}</p>
                                         </div>
                                         <div>
-                                            <div className="text-[10px] font-black uppercase tracking-widest text-slate-600 mb-2 uppercase">Email</div>
+                                            <div className="text-[10px] font-black tracking-widest text-slate-600 mb-2 uppercase">Email</div>
                                             <a href={`mailto:${companyInfo.contact.email}`} className="text-xs font-bold text-blue-400 hover:text-white transition-colors lowercase tracking-widest uppercase">{companyInfo.contact.email}</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div className="border-t border-white/5 pt-12 flex flex-col md:flex-row justify-between items-center gap-8 text-[10px] font-black uppercase tracking-[0.3em] uppercase">
-                                <div className="text-slate-700 text-center md:text-left uppercase tracking-[0.2em]">© 2026 HI-TEK PEST CONTROL SOLUTIONS. SINCE 1999.</div>
+                                <div className="text-slate-700 text-center md:text-left uppercase tracking-[0.2em]">© 2026 HI-TEK PEST CONTROL SERVICE. SINCE 1999.</div>
                             </div>
                         </div>
                     </footer>
