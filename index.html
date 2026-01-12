@@ -185,7 +185,7 @@
                             </div>
                         </div>
                         {isMenuOpen && (
-                            <div className="md:hidden bg-white border-t px-4 py-8 space-y-6 shadow-2xl">
+                            <div className="md:hidden bg-white border-t px-4 py-8 space-y-6 shadow-2xl animate-in slide-in-from-top">
                                 <button onClick={() => scrollToSection('services')} className="block text-2xl font-black text-blue-900 uppercase">Services</button>
                                 <button onClick={() => scrollToSection('profile')} className="block text-2xl font-black text-blue-900 uppercase">Profile</button>
                                 <button onClick={() => scrollToSection('pest-guide')} className="block text-2xl font-black text-blue-900 uppercase">Pest Guide</button>
@@ -208,7 +208,7 @@
                             <div className="inline-flex items-center bg-white/10 backdrop-blur-md px-5 py-2 rounded-full border border-white/10 text-white text-xs font-black uppercase tracking-widest mb-8">
                                 <Icon name="award" className="w-4 h-4 mr-2 text-orange-400" /> 25 Years of Excellence
                             </div>
-                            <h1 className="text-5xl md:text-8xl font-black text-white mb-8 leading-[1.1] tracking-tighter">
+                            <h1 className="text-5xl md:text-8xl font-black text-white mb-8 leading-[1.1] tracking-tighter text-shadow">
                                 FINDING ROOT CAUSE<br />
                                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-cyan-200">PROVIDING REMEDY</span>
                             </h1>
@@ -236,15 +236,15 @@
                                     </div>
                                     <h2 className="text-4xl font-black text-blue-900 mb-8 tracking-tighter uppercase">Prevention over Control</h2>
                                     <div className="space-y-8 text-slate-600 font-medium text-lg leading-relaxed">
-                                        <div className="flex items-start bg-blue-50/50 p-6 rounded-3xl border border-blue-100/50">
+                                        <div className="flex items-start bg-blue-50/50 p-6 rounded-3xl border border-blue-100/50 transition hover:bg-blue-50">
                                             <Icon name="target" className="w-8 h-8 mr-6 text-blue-600 shrink-0 mt-1" />
                                             <p>Finding the <strong>Root Cause</strong> and providing a proper remedy rather than just temporary measures.</p>
                                         </div>
-                                        <div className="flex items-start bg-blue-50/50 p-6 rounded-3xl border border-blue-100/50">
+                                        <div className="flex items-start bg-blue-50/50 p-6 rounded-3xl border border-blue-100/50 transition hover:bg-blue-50">
                                             <Icon name="shield-check" className="w-8 h-8 mr-6 text-blue-600 shrink-0 mt-1" />
                                             <p>Fixing problems <strong>before they come to your knowledge</strong>, maintaining a consistent pest-free atmosphere.</p>
                                         </div>
-                                        <div className="flex items-start bg-blue-50/50 p-6 rounded-3xl border border-blue-100/50">
+                                        <div className="flex items-start bg-blue-50/50 p-6 rounded-3xl border border-blue-100/50 transition hover:bg-blue-50">
                                             <Icon name="users" className="w-8 h-8 mr-6 text-blue-600 shrink-0 mt-1" />
                                             <p>Result-oriented service with follow-ups exceeding schedules to ensure total client satisfaction.</p>
                                         </div>
@@ -284,20 +284,20 @@
                             
                             <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
                                 {services.map((s, idx) => (
-                                    <div key={idx} className="bg-white p-10 lg:p-12 rounded-[3.5rem] shadow-sm border border-slate-100 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 group flex flex-col">
-                                        <div className="mb-8 bg-blue-50 w-24 h-24 rounded-[2.5rem] flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-all duration-500">
+                                    <div key={idx} className="bg-white p-10 lg:p-12 rounded-[3.5rem] shadow-sm border border-slate-100 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 group flex flex-col text-center md:text-left">
+                                        <div className="mb-8 mx-auto md:mx-0 bg-blue-50 w-24 h-24 rounded-[2.5rem] flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-all duration-500">
                                             <Icon name={s.icon} className="w-12 h-12" />
                                         </div>
                                         <h3 className="text-3xl font-black mb-6 text-blue-900 uppercase tracking-tight">{s.title}</h3>
                                         <p className="text-slate-500 font-medium leading-relaxed mb-8 text-lg flex-grow">{s.desc}</p>
-                                        <div className="space-y-3 mb-10">
+                                        <div className="space-y-3 mb-10 text-left">
                                             {s.features.map((f, i) => (
                                                 <div key={i} className="flex items-center text-xs font-black uppercase tracking-widest text-slate-400 group-hover:text-blue-500 transition-colors">
                                                     <div className="w-1.5 h-1.5 rounded-full bg-orange-500 mr-3"></div>{f}
                                                 </div>
                                             ))}
                                         </div>
-                                        <button onClick={() => scrollToSection('contact')} className="flex items-center text-blue-900 font-black text-sm uppercase tracking-widest group-hover:text-blue-600 transition-colors">
+                                        <button onClick={() => scrollToSection('contact')} className="flex items-center justify-center md:justify-start text-blue-900 font-black text-sm uppercase tracking-widest group-hover:text-blue-600 transition-colors">
                                             Inquire Now <Icon name="chevron-right" className="w-4 h-4 ml-2 text-orange-500 group-hover:translate-x-1 transition-transform" />
                                         </button>
                                     </div>
@@ -337,7 +337,7 @@
                                         
                                         <div className="grid md:grid-cols-2 gap-8 mb-12">
                                             <div className="bg-white/5 backdrop-blur-md p-8 rounded-3xl border border-white/10">
-                                                <h4 className="text-blue-400 font-black text-[10px] uppercase tracking-widest mb-4 flex items-center"><Icon name="droplets" className="w-4 h-4 mr-2" /> Prevention</h4>
+                                                <h4 className="text-blue-400 font-black text-[10px] uppercase tracking-widest mb-4 flex items-center"><Icon name="droplets" className="w-4 h-4 mr-2" /> Identification</h4>
                                                 <p className="text-sm font-medium leading-relaxed text-blue-50/80">{pestLibrary[activePestTab].prevention}</p>
                                             </div>
                                             <div className="bg-white/5 backdrop-blur-md p-8 rounded-3xl border border-white/10">
@@ -351,7 +351,7 @@
                         </div>
                     </section>
 
-                    {/* Secure Your Premises Section */}
+                    {/* Secure Your Premises Section with Netlify Forms enabled */}
                     <section id="contact" className="py-24 bg-[#e5e7eb] flex items-center justify-center px-4 scroll-mt-20">
                         <div className="max-w-7xl w-full flex flex-col md:flex-row bg-white rounded-[4rem] shadow-2xl overflow-hidden min-h-[600px]">
                             <div className="md:w-[42%] bg-[#426bd5] p-12 md:p-16 flex flex-col justify-between text-white">
@@ -362,17 +362,17 @@
 
                                 <div className="space-y-6 mt-16">
                                     <a href={`tel:${companyInfo.contact.phone1}`} className="bg-white/10 backdrop-blur-sm border border-white/10 p-5 rounded-3xl flex items-center gap-5 transition hover:bg-white/20 group">
-                                        <div className="w-14 h-14 bg-gradient-to-br from-orange-400 to-orange-600 rounded-2xl flex items-center justify-center shadow-lg shrink-0"><Icon name="phone" className="w-7 h-7 text-white" /></div>
+                                        <div className="w-14 h-14 bg-gradient-to-br from-orange-400 to-orange-600 rounded-2xl flex items-center justify-center shadow-lg shrink-0 group-hover:scale-105 transition-transform"><Icon name="phone" className="w-7 h-7 text-white" /></div>
                                         <div className="text-2xl font-black tracking-tight whitespace-nowrap">{companyInfo.contact.phone1}</div>
                                     </a>
                                     <a href={`tel:${companyInfo.contact.phone2}`} className="bg-white/10 backdrop-blur-sm border border-white/10 p-5 rounded-3xl flex items-center gap-5 transition hover:bg-white/20 group">
-                                        <div className="w-14 h-14 bg-gradient-to-br from-orange-400 to-orange-600 rounded-2xl flex items-center justify-center shadow-lg shrink-0"><Icon name="phone" className="w-7 h-7 text-white" /></div>
+                                        <div className="w-14 h-14 bg-gradient-to-br from-orange-400 to-orange-600 rounded-2xl flex items-center justify-center shadow-lg shrink-0 group-hover:scale-105 transition-transform"><Icon name="phone" className="w-7 h-7 text-white" /></div>
                                         <div className="text-2xl font-black tracking-tight whitespace-nowrap">{companyInfo.contact.phone2}</div>
                                     </a>
                                     <a href={companyInfo.contact.mapUrl} target="_blank" className="bg-white/10 backdrop-blur-sm border border-white/10 p-5 rounded-3xl flex items-start gap-5 transition hover:bg-white/20 group">
-                                        <div className="w-14 h-14 bg-gradient-to-br from-blue-400 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg shrink-0"><Icon name="map-pin" className="w-7 h-7 text-white" /></div>
+                                        <div className="w-14 h-14 bg-gradient-to-br from-blue-400 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg shrink-0 group-hover:scale-105 transition-transform"><Icon name="map-pin" className="w-7 h-7 text-white" /></div>
                                         <div>
-                                            <div className="text-[10px] font-black uppercase tracking-widest text-blue-200 mb-1 opacity-70">View on Google Maps</div>
+                                            <div className="text-[10px] font-black uppercase tracking-widest text-blue-200 mb-1 opacity-70">Location</div>
                                             <div className="text-sm font-black tracking-tight leading-snug">{companyInfo.contact.address}</div>
                                         </div>
                                     </a>
@@ -381,21 +381,33 @@
 
                             <div className="flex-1 p-12 md:p-20 bg-[#e5e7eb] flex flex-col items-center justify-center">
                                 <div className="w-full max-w-2xl bg-white/40 backdrop-blur-sm rounded-[3rem] p-1.5 shadow-inner border-[3px] border-white/60 relative">
-                                    <form className="bg-[#e5e7eb]/80 rounded-[2.8rem] p-10 md:p-14 space-y-8">
+                                    <form 
+                                        name="inspection-request" 
+                                        method="POST" 
+                                        data-netlify="true" 
+                                        className="bg-[#e5e7eb]/80 rounded-[2.8rem] p-10 md:p-14 space-y-8"
+                                    >
+                                        <input type="hidden" name="form-name" value="inspection-request" />
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                            <div className="bg-[#d1d5db]/50 p-6 rounded-3xl"><input type="text" placeholder="Full Name" className="w-full bg-transparent outline-none font-black text-slate-700 placeholder:text-slate-500" /></div>
-                                            <div className="bg-[#d1d5db]/50 p-6 rounded-3xl"><input type="tel" placeholder="Mobile Number" className="w-full bg-transparent outline-none font-black text-slate-700 placeholder:text-slate-500" /></div>
+                                            <div className="bg-[#d1d5db]/50 p-6 rounded-3xl">
+                                                <input required type="text" name="full-name" placeholder="Full Name" className="w-full bg-transparent outline-none font-black text-slate-700 placeholder:text-slate-500" />
+                                            </div>
+                                            <div className="bg-[#d1d5db]/50 p-6 rounded-3xl">
+                                                <input required type="tel" name="mobile" placeholder="Mobile Number" className="w-full bg-transparent outline-none font-black text-slate-700 placeholder:text-slate-500" />
+                                            </div>
                                         </div>
                                         <div className="bg-[#d1d5db]/50 p-6 rounded-3xl relative">
-                                            <select className="w-full bg-transparent outline-none font-black text-slate-700 appearance-none cursor-pointer">
-                                                <option>General Disinfestation</option>
-                                                <option>Rodent Control</option>
-                                                <option>Termite Control</option>
+                                            <select name="service-type" className="w-full bg-transparent outline-none font-black text-slate-700 appearance-none cursor-pointer">
+                                                <option value="General Disinfestation">General Disinfestation</option>
+                                                <option value="Rodent Control">Rodent Control</option>
+                                                <option value="Termite Control">Termite Control</option>
                                             </select>
                                             <Icon name="chevron-right" className="absolute right-6 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 rotate-90" />
                                         </div>
-                                        <div className="bg-[#d1d5db]/50 p-8 rounded-[2.5rem]"><textarea rows="5" placeholder="Case details..." className="w-full bg-transparent outline-none font-black text-slate-700 placeholder:text-slate-500 resize-none"></textarea></div>
-                                        <button type="button" className="w-full bg-[#426bd5] text-white font-black py-7 rounded-[2rem] text-lg uppercase tracking-widest shadow-2xl hover:bg-blue-700 transition active:scale-95">INITIALIZE INSPECTION</button>
+                                        <div className="bg-[#d1d5db]/50 p-8 rounded-[2.5rem]">
+                                            <textarea required name="case-details" rows="5" placeholder="Case details..." className="w-full bg-transparent outline-none font-black text-slate-700 placeholder:text-slate-500 resize-none"></textarea>
+                                        </div>
+                                        <button type="submit" className="w-full bg-[#426bd5] text-white font-black py-7 rounded-[2rem] text-lg uppercase tracking-widest shadow-2xl hover:bg-blue-700 transition active:scale-95">INITIALIZE INSPECTION</button>
                                     </form>
                                 </div>
                             </div>
@@ -409,7 +421,7 @@
                                 <div className="col-span-1">
                                     <div className="flex items-center text-white mb-8 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
                                         <Icon name="shield-check" className="w-8 h-8 mr-3 text-blue-500" />
-                                        <span className="text-2xl font-black tracking-tight uppercase">HI-TEK</span>
+                                        <span className="text-2xl font-black tracking-tight uppercase leading-none">HI-TEK</span>
                                     </div>
                                     <p className="text-sm leading-relaxed font-medium mb-8">Established 1999. Experts in combining Chemistry of Pesticides and Biology of Pests.</p>
                                 </div>
@@ -426,8 +438,8 @@
                                 <div>
                                     <h4 className="text-white font-black mb-10 uppercase text-xs tracking-[0.3em]">Services</h4>
                                     <ul className="space-y-4 text-xs font-bold uppercase tracking-widest">
-                                        <li className="hover:text-blue-400 cursor-pointer flex items-center"><Icon name="chevron-right" className="w-3 h-3 mr-2 text-orange-500" /> Larvicidal Fogging</li>
-                                        <li className="hover:text-blue-400 cursor-pointer flex items-center"><Icon name="chevron-right" className="w-3 h-3 mr-2 text-orange-500" /> Soil Saturation</li>
+                                        <li className="hover:text-blue-400 cursor-pointer flex items-center transition-colors"><Icon name="chevron-right" className="w-3 h-3 mr-2 text-orange-500" /> Larvicidal Fogging</li>
+                                        <li className="hover:text-blue-400 cursor-pointer flex items-center transition-colors"><Icon name="chevron-right" className="w-3 h-3 mr-2 text-orange-500" /> Soil Saturation</li>
                                     </ul>
                                 </div>
 
