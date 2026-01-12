@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hi-Tek Pest Control - Scientific Management</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- React & ReactDOM -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <!-- Babel for JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap');
+        body { 
+            font-family: 'Inter', sans-serif; 
+            scroll-behavior: smooth; 
+        }
+        .scroll-mt-20 {
+            scroll-margin-top: 5rem;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        // Icon Helper Component to render Lucide icons in the browser
+        const Icon = ({ name, className }) => {
+            useEffect(() => {
+                if (window.lucide) {
+                    window.lucide.createIcons();
+                }
+            }, [name]);
+            return <i data-lucide={name} className={className}></i>;
+        };
+
+        const App = () => {
+            const [isMenuOpen, setIsMenuOpen] = useState(false);
+            const [activePestTab, setActivePestTab] = useState('rodents');
+
+            const companyInfo = {
+                name: "Hi-Tek Pest Control",
+                established: "June 1999",
+                tagline: "Specialist in General Disinfestation, Rodent & Termite Control",
+                contact: {
+                    phone1: "94440 25244",
+                    phone2: "94443 97668",
+                    email: "hitekpestcontrol@yahoo.com",
+                    address: "No 74A, Velachery Main Road, Velachery, Chennai - 42",
+                    mapUrl: "https://maps.app.goo.gl/vUNy5v4t1Y2uRPuE7"
+                },
+                regs: {
+                    gst: "33AAEFH2836H2ZL",
+                    pan: "AAEFH2836H",
+                    esi: "51-55692-101",
+                    epf: "TN/TBM/60564",
+                    ssi: "330294158 (05 Dec 2006)"
+                }
+            };
+
+            const scrollToSection = (id) => {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                    setIsMenuOpen(false);
+                }
+            };
+
+            const services = [
+                {
+                    title: "General Disinfestation",
+                    icon: "bug",
+                    desc: "Comprehensive protection against mosquitoes, flies, roaches, and ants using advanced herbal and spray treatments.",
+                    features: ["WHO Approved Chemicals", "Herbal Gels", "Residual Spraying"]
+                },
+                {
+                    title: "Rodent Eradication",
+                    icon: "rat",
+                    desc: "Scientific trapping and burrow fumigation specialized for bandicoots and sewer rats in industrial environments.",
+                    features: ["Species Specific Traps", "Safe Burial Policy", "Barrier Tech"]
+                },
+                {
+                    title: "Termite Management",
+                    icon: "home",
+                    desc: "Expert deep-soil injection technology for both new constructions and existing properties with long-term warranty.",
+                    features: ["Soil Saturation", "12mm Drilling", "Anti-Termite Barriers"]
+                }
+            ];
+
+            const pestLibrary = {
+                rodents: {
+                    title: "Rodents (Rats & Bandicoots)",
+                    content: "Nocturnal and hardy. Gnaw on copper/lead, causing short circuits and fires. They consume 10% of body weight daily and destroy 15% of stored grains via contamination.",
+                    prevention: "Seal holes (1/64\" access), close cable pathways, and check drain pipes regularly.",
+                    method: "Inner area: Wooden traps, Cage traps, Glue trays. Outer area: Snap traps, poison baits, burrow fumigation. Live catching & burial is mandatory.",
+                    species: "Mice, Bandicoots, Sewer Rats, Roof Rats, House Mouse."
+                },
+                termites: {
+                    title: "Termites (Silent Destroyers)",
+                    content: "Subterranean colonies can have 2 million members and extend 300 feet. They can destroy building foundations, plumbing, and insulation.",
+                    prevention: "Eliminate water pooling near foundations. Store firewood away from structures. Seal exterior cracks.",
+                    method: "Post-Const: 12mm drilling at 1ft intervals, 30cm depth. Pre-Const: Trench treatment, soil loosening at 600mm intervals.",
+                    species: "Subterranean, Damp wood."
+                },
+                cockroaches: {
+                    title: "Cockroaches",
+                    content: "Active at night. Spread diarrhea, dysentery, cholera, and leprosy. Discharge nauseous secretions from mouth/glands that ruin food.",
+                    prevention: "Clean sinks/drains daily. Seal cracks in furniture. Empty store rooms fortnightly.",
+                    method: "Targeted spraying in kitchens, refrigerators, ducts, and sewers at regular intervals.",
+                    species: "Periplanata Americana, Blatella Germanica."
+                },
+                flies: {
+                    title: "House Flies",
+                    content: "Common House Fly (Musca Domestica). A single fly can deposit 2000 eggs. They spread typhoid, summer diarrhea, and intestinal worms.",
+                    prevention: "Proper garbage disposal and sealing of organic waste.",
+                    method: "Larvicidal spray for early life stages and Residual spray for adults.",
+                    species: "Musca Domestica."
+                },
+                mosquitoes: {
+                    title: "Mosquitoes",
+                    content: "Vectors for Malaria (Anopheles), Encephalitis (Culex), and Dengue (Aedes). Breed in stagnant water.",
+                    prevention: "Prevent water stagnation in marshy lands and ponds.",
+                    method: "Larvicidal spray for sites, Residual spray for adults, and WHO Fogging.",
+                    species: "Anopheles, Culex, Aedes."
+                }
+            };
+
+            return (
+                <div className="min-h-screen bg-slate-50 text-slate-900 selection:bg-blue-100">
+                    {/* Mobile Sticky CTA */}
+                    <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-blue-900 flex">
+                        <a href={`tel:${companyInfo.contact.phone1}`} className="flex-1 flex items-center justify-center py-4 text-white border-r border-blue-800">
+                            <Icon name="phone" className="w-5 h-5 mr-2" /> <span className="font-bold uppercase text-xs tracking-widest">Call Now</span>
+                        </a>
+                        <button onClick={() => scrollToSection('contact')} className="flex-1 flex items-center justify-center py-4 text-white bg-orange-600 font-bold uppercase text-xs tracking-widest">
+                            Get Quote
+                        </button>
+                    </div>
+
+                    {/* Navigation */}
+                    <nav className="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-40 border-b border-slate-100">
+                        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                            <div className="flex justify-between h-20 items-center">
+                                <div className="flex items-center cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+                                    <div className="bg-blue-900 p-2 rounded-xl">
+                                        <Icon name="shield-check" className="w-7 h-7 text-white" />
+                                    </div>
+                                    <div className="ml-3">
+                                        <span className="text-xl font-bold tracking-tight text-blue-900 block leading-none">HI-TEK</span>
+                                        <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Pest Control</span>
+                                    </div>
+                                </div>
+                                
+                                <div className="hidden md:flex space-x-8 items-center">
+                                    <div className="flex space-x-6 mr-4">
+                                        <button onClick={() => scrollToSection('services')} className="text-sm font-bold text-slate-600 hover:text-blue-900 transition uppercase tracking-widest">Services</button>
+                                        <button onClick={() => scrollToSection('profile')} className="text-sm font-bold text-slate-600 hover:text-blue-900 transition uppercase tracking-widest">Profile</button>
+                                        <button onClick={() => scrollToSection('pest-guide')} className="text-sm font-bold text-slate-600 hover:text-blue-900 transition uppercase tracking-widest">Pest Guide</button>
+                                    </div>
+                                    <div className="h-10 w-[1px] bg-slate-200"></div>
+                                    <div className="flex flex-col items-end">
+                                        <a href={`tel:${companyInfo.contact.phone1}`} className="flex items-center text-blue-900 font-black text-sm hover:text-blue-700 transition whitespace-nowrap">
+                                            <Icon name="phone-call" className="w-3.5 h-3.5 mr-2 text-orange-500" /> {companyInfo.contact.phone1}
+                                        </a>
+                                        <a href={`tel:${companyInfo.contact.phone2}`} className="flex items-center text-blue-900 font-black text-sm hover:text-blue-700 transition whitespace-nowrap">
+                                            <Icon name="phone-call" className="w-3.5 h-3.5 mr-2 text-orange-500" /> {companyInfo.contact.phone2}
+                                        </a>
+                                    </div>
+                                    <button onClick={() => scrollToSection('contact')} className="bg-blue-600 text-white px-7 py-3 rounded-xl font-black text-sm hover:bg-blue-700 transition shadow-xl shadow-blue-100 uppercase tracking-wider">
+                                        Book Inspection
+                                    </button>
+                                </div>
+
+                                <div className="md:hidden">
+                                    <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="p-2 text-blue-900">
+                                        <Icon name={isMenuOpen ? "x" : "menu"} className="w-6 h-6" />
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        {isMenuOpen && (
+                            <div className="md:hidden bg-white border-t px-4 py-8 space-y-6 shadow-2xl">
+                                <button onClick={() => scrollToSection('services')} className="block text-2xl font-black text-blue-900 uppercase">Services</button>
+                                <button onClick={() => scrollToSection('profile')} className="block text-2xl font-black text-blue-900 uppercase">Profile</button>
+                                <button onClick={() => scrollToSection('pest-guide')} className="block text-2xl font-black text-blue-900 uppercase">Pest Guide</button>
+                                <div className="pt-4 space-y-4 border-t border-slate-100">
+                                    <a href={`tel:${companyInfo.contact.phone1}`} className="flex items-center text-blue-900 font-black text-lg">
+                                        <Icon name="phone-call" className="w-5 h-5 mr-3 text-orange-500" /> {companyInfo.contact.phone1}
+                                    </a>
+                                    <a href={`tel:${companyInfo.contact.phone2}`} className="flex items-center text-blue-900 font-black text-lg">
+                                        <Icon name="phone-call" className="w-5 h-5 mr-3 text-orange-500" /> {companyInfo.contact.phone2}
+                                    </a>
+                                </div>
+                            </div>
+                        )}
+                    </nav>
+
+                    {/* Hero Section */}
+                    <header className="relative bg-[#1e3a8a] py-32 md:py-48 overflow-hidden text-center">
+                        <div className="absolute inset-0 bg-gradient-to-br from-blue-900 to-indigo-900"></div>
+                        <div className="relative z-10 max-w-7xl mx-auto px-4">
+                            <div className="inline-flex items-center bg-white/10 backdrop-blur-md px-5 py-2 rounded-full border border-white/10 text-white text-xs font-black uppercase tracking-widest mb-8">
+                                <Icon name="award" className="w-4 h-4 mr-2 text-orange-400" /> 25 Years of Excellence
+                            </div>
+                            <h1 className="text-5xl md:text-8xl font-black text-white mb-8 leading-[1.1] tracking-tighter">
+                                FINDING ROOT CAUSE<br />
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-cyan-200">PROVIDING REMEDY</span>
+                            </h1>
+                            <p className="text-xl md:text-2xl text-blue-100/80 max-w-3xl mx-auto mb-12 font-medium">
+                                Proprietorship since 1999. Specialized in combining Chemistry, Biology, and Pest Science to protect Chennai's infrastructure.
+                            </p>
+                            <div className="flex flex-col sm:flex-row justify-center gap-6">
+                                <button onClick={() => scrollToSection('contact')} className="bg-orange-600 text-white px-12 py-6 rounded-2xl text-lg font-black hover:bg-orange-700 transition transform hover:-translate-y-1 shadow-2xl uppercase tracking-widest">
+                                    Get Free Inspection
+                                </button>
+                                <button onClick={() => scrollToSection('services')} className="bg-white/10 backdrop-blur-md border border-white/20 text-white px-12 py-6 rounded-2xl text-lg font-black hover:bg-white/20 transition transform hover:-translate-y-1 shadow-2xl uppercase tracking-widest">
+                                    Our Services
+                                </button>
+                            </div>
+                        </div>
+                    </header>
+
+                    {/* Philosophy & Stats Section */}
+                    <section id="profile" className="py-24 bg-white scroll-mt-20">
+                        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                            <div className="grid lg:grid-cols-2 gap-20 items-center">
+                                <div>
+                                    <div className="inline-flex items-center px-4 py-1.5 bg-blue-100 text-blue-700 rounded-full text-[10px] font-black uppercase tracking-widest mb-6">
+                                        Our Philosophy
+                                    </div>
+                                    <h2 className="text-4xl font-black text-blue-900 mb-8 tracking-tighter uppercase">Prevention over Control</h2>
+                                    <div className="space-y-8 text-slate-600 font-medium text-lg leading-relaxed">
+                                        <div className="flex items-start bg-blue-50/50 p-6 rounded-3xl border border-blue-100/50">
+                                            <Icon name="target" className="w-8 h-8 mr-6 text-blue-600 shrink-0 mt-1" />
+                                            <p>Finding the <strong>Root Cause</strong> and providing a proper remedy rather than just temporary measures.</p>
+                                        </div>
+                                        <div className="flex items-start bg-blue-50/50 p-6 rounded-3xl border border-blue-100/50">
+                                            <Icon name="shield-check" className="w-8 h-8 mr-6 text-blue-600 shrink-0 mt-1" />
+                                            <p>Fixing problems <strong>before they come to your knowledge</strong>, maintaining a consistent pest-free atmosphere.</p>
+                                        </div>
+                                        <div className="flex items-start bg-blue-50/50 p-6 rounded-3xl border border-blue-100/50">
+                                            <Icon name="users" className="w-8 h-8 mr-6 text-blue-600 shrink-0 mt-1" />
+                                            <p>Result-oriented service with follow-ups exceeding schedules to ensure total client satisfaction.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="bg-slate-900 rounded-[3rem] p-10 md:p-14 text-white shadow-2xl relative overflow-hidden">
+                                    <h3 className="text-2xl font-black mb-8 uppercase tracking-widest text-blue-400">Technical Attributes</h3>
+                                    <div className="space-y-8 text-slate-300">
+                                        <div className="flex gap-6">
+                                            <Icon name="microscope" className="w-12 h-12 text-orange-400 shrink-0" />
+                                            <div>
+                                                <h4 className="font-bold text-lg mb-1 uppercase tracking-tight text-white">Broad Spectrum Action</h4>
+                                                <p className="text-sm">Synthetic Pyrethroids with long-lasting effect and low toxicity to humans.</p>
+                                            </div>
+                                        </div>
+                                        <div className="flex gap-6">
+                                            <Icon name="leaf" className="w-12 h-12 text-green-400 shrink-0" />
+                                            <div>
+                                                <h4 className="font-bold text-lg mb-1 uppercase tracking-tight text-white">Environmental Safety</h4>
+                                                <p className="text-sm">Odorless, Non-staining, and Bio-degradable components safe for inhabitants and animals.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Services Section */}
+                    <section id="services" className="py-32 bg-slate-50 scroll-mt-20">
+                        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                            <div className="text-center mb-20 max-w-3xl mx-auto">
+                                <h2 className="text-5xl font-black text-blue-900 mb-6 tracking-tighter uppercase">Scientific Solutions</h2>
+                                <p className="text-slate-500 text-xl font-medium leading-relaxed italic">"Infrastructure and manpower to fix problems before they are seen."</p>
+                            </div>
+                            
+                            <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
+                                {services.map((s, idx) => (
+                                    <div key={idx} className="bg-white p-10 lg:p-12 rounded-[3.5rem] shadow-sm border border-slate-100 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 group flex flex-col">
+                                        <div className="mb-8 bg-blue-50 w-24 h-24 rounded-[2.5rem] flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-all duration-500">
+                                            <Icon name={s.icon} className="w-12 h-12" />
+                                        </div>
+                                        <h3 className="text-3xl font-black mb-6 text-blue-900 uppercase tracking-tight">{s.title}</h3>
+                                        <p className="text-slate-500 font-medium leading-relaxed mb-8 text-lg flex-grow">{s.desc}</p>
+                                        <div className="space-y-3 mb-10">
+                                            {s.features.map((f, i) => (
+                                                <div key={i} className="flex items-center text-xs font-black uppercase tracking-widest text-slate-400 group-hover:text-blue-500 transition-colors">
+                                                    <div className="w-1.5 h-1.5 rounded-full bg-orange-500 mr-3"></div>{f}
+                                                </div>
+                                            ))}
+                                        </div>
+                                        <button onClick={() => scrollToSection('contact')} className="flex items-center text-blue-900 font-black text-sm uppercase tracking-widest group-hover:text-blue-600 transition-colors">
+                                            Inquire Now <Icon name="chevron-right" className="w-4 h-4 ml-2 text-orange-500 group-hover:translate-x-1 transition-transform" />
+                                        </button>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Pest Library */}
+                    <section id="pest-guide" className="py-24 bg-white scroll-mt-20">
+                        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                            <div className="bg-slate-900 rounded-[4rem] overflow-hidden flex flex-col lg:flex-row min-h-[750px] shadow-2xl">
+                                <div className="lg:w-80 bg-slate-800/50 p-8 border-r border-white/5">
+                                    <p className="text-[10px] font-black text-slate-500 uppercase tracking-[0.3em] mb-8 px-4">Database</p>
+                                    {Object.keys(pestLibrary).map((key) => (
+                                        <button
+                                            key={key}
+                                            onClick={() => setActivePestTab(key)}
+                                            className={`w-full text-left px-6 py-5 rounded-2xl mb-4 transition-all font-black uppercase text-xs tracking-widest flex items-center justify-between ${
+                                                activePestTab === key 
+                                                ? 'bg-blue-600 text-white shadow-xl' 
+                                                : 'text-slate-400 hover:text-white'
+                                            }`}
+                                        >
+                                            {key}
+                                            {activePestTab === key && <Icon name="chevron-right" className="w-4 h-4" />}
+                                        </button>
+                                    ))}
+                                </div>
+
+                                <div className="flex-1 p-10 md:p-20 bg-gradient-to-br from-slate-900 to-blue-900/50 text-white overflow-y-auto max-h-[750px]">
+                                    <div className="max-w-3xl">
+                                        <Icon name="microscope" className="w-16 h-16 text-blue-400 mb-8" />
+                                        <h3 className="text-5xl font-black mb-4 uppercase tracking-tight">{pestLibrary[activePestTab].title}</h3>
+                                        <p className="text-xs font-black text-blue-400 uppercase tracking-widest mb-8">Species: {pestLibrary[activePestTab].species}</p>
+                                        <p className="text-xl text-blue-100/70 mb-12 font-medium leading-relaxed">{pestLibrary[activePestTab].content}</p>
+                                        
+                                        <div className="grid md:grid-cols-2 gap-8 mb-12">
+                                            <div className="bg-white/5 backdrop-blur-md p-8 rounded-3xl border border-white/10">
+                                                <h4 className="text-blue-400 font-black text-[10px] uppercase tracking-widest mb-4 flex items-center"><Icon name="droplets" className="w-4 h-4 mr-2" /> Prevention</h4>
+                                                <p className="text-sm font-medium leading-relaxed text-blue-50/80">{pestLibrary[activePestTab].prevention}</p>
+                                            </div>
+                                            <div className="bg-white/5 backdrop-blur-md p-8 rounded-3xl border border-white/10">
+                                                <h4 className="text-orange-400 font-black text-[10px] uppercase tracking-widest mb-4 flex items-center"><Icon name="zap" className="w-4 h-4 mr-2" /> Scientific Fix</h4>
+                                                <p className="text-sm font-medium leading-relaxed text-blue-50/80">{pestLibrary[activePestTab].method}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Secure Your Premises Section */}
+                    <section id="contact" className="py-24 bg-[#e5e7eb] flex items-center justify-center px-4 scroll-mt-20">
+                        <div className="max-w-7xl w-full flex flex-col md:flex-row bg-white rounded-[4rem] shadow-2xl overflow-hidden min-h-[600px]">
+                            <div className="md:w-[42%] bg-[#426bd5] p-12 md:p-16 flex flex-col justify-between text-white">
+                                <div>
+                                    <h2 className="text-5xl font-black leading-none mb-4 uppercase tracking-tighter">SECURE<br/>YOUR<br/><span className="text-[#e2a149]">PREMISES</span></h2>
+                                    <p className="text-lg font-medium text-blue-100 max-w-[250px] mt-10">Expert audits and scientific inspections within 24 hours.</p>
+                                </div>
+
+                                <div className="space-y-6 mt-16">
+                                    <a href={`tel:${companyInfo.contact.phone1}`} className="bg-white/10 backdrop-blur-sm border border-white/10 p-5 rounded-3xl flex items-center gap-5 transition hover:bg-white/20 group">
+                                        <div className="w-14 h-14 bg-gradient-to-br from-orange-400 to-orange-600 rounded-2xl flex items-center justify-center shadow-lg shrink-0"><Icon name="phone" className="w-7 h-7 text-white" /></div>
+                                        <div className="text-2xl font-black tracking-tight whitespace-nowrap">{companyInfo.contact.phone1}</div>
+                                    </a>
+                                    <a href={`tel:${companyInfo.contact.phone2}`} className="bg-white/10 backdrop-blur-sm border border-white/10 p-5 rounded-3xl flex items-center gap-5 transition hover:bg-white/20 group">
+                                        <div className="w-14 h-14 bg-gradient-to-br from-orange-400 to-orange-600 rounded-2xl flex items-center justify-center shadow-lg shrink-0"><Icon name="phone" className="w-7 h-7 text-white" /></div>
+                                        <div className="text-2xl font-black tracking-tight whitespace-nowrap">{companyInfo.contact.phone2}</div>
+                                    </a>
+                                    <a href={companyInfo.contact.mapUrl} target="_blank" className="bg-white/10 backdrop-blur-sm border border-white/10 p-5 rounded-3xl flex items-start gap-5 transition hover:bg-white/20 group">
+                                        <div className="w-14 h-14 bg-gradient-to-br from-blue-400 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg shrink-0"><Icon name="map-pin" className="w-7 h-7 text-white" /></div>
+                                        <div>
+                                            <div className="text-[10px] font-black uppercase tracking-widest text-blue-200 mb-1 opacity-70">View on Google Maps</div>
+                                            <div className="text-sm font-black tracking-tight leading-snug">{companyInfo.contact.address}</div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div className="flex-1 p-12 md:p-20 bg-[#e5e7eb] flex flex-col items-center justify-center">
+                                <div className="w-full max-w-2xl bg-white/40 backdrop-blur-sm rounded-[3rem] p-1.5 shadow-inner border-[3px] border-white/60 relative">
+                                    <form className="bg-[#e5e7eb]/80 rounded-[2.8rem] p-10 md:p-14 space-y-8">
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                            <div className="bg-[#d1d5db]/50 p-6 rounded-3xl"><input type="text" placeholder="Full Name" className="w-full bg-transparent outline-none font-black text-slate-700 placeholder:text-slate-500" /></div>
+                                            <div className="bg-[#d1d5db]/50 p-6 rounded-3xl"><input type="tel" placeholder="Mobile Number" className="w-full bg-transparent outline-none font-black text-slate-700 placeholder:text-slate-500" /></div>
+                                        </div>
+                                        <div className="bg-[#d1d5db]/50 p-6 rounded-3xl relative">
+                                            <select className="w-full bg-transparent outline-none font-black text-slate-700 appearance-none cursor-pointer">
+                                                <option>General Disinfestation</option>
+                                                <option>Rodent Control</option>
+                                                <option>Termite Control</option>
+                                            </select>
+                                            <Icon name="chevron-right" className="absolute right-6 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 rotate-90" />
+                                        </div>
+                                        <div className="bg-[#d1d5db]/50 p-8 rounded-[2.5rem]"><textarea rows="5" placeholder="Case details..." className="w-full bg-transparent outline-none font-black text-slate-700 placeholder:text-slate-500 resize-none"></textarea></div>
+                                        <button type="button" className="w-full bg-[#426bd5] text-white font-black py-7 rounded-[2rem] text-lg uppercase tracking-widest shadow-2xl hover:bg-blue-700 transition active:scale-95">INITIALIZE INSPECTION</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Footer */}
+                    <footer className="bg-slate-900 text-slate-500 py-24 border-t border-white/5">
+                        <div className="max-w-7xl mx-auto px-4">
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
+                                <div className="col-span-1">
+                                    <div className="flex items-center text-white mb-8 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+                                        <Icon name="shield-check" className="w-8 h-8 mr-3 text-blue-500" />
+                                        <span className="text-2xl font-black tracking-tight uppercase">HI-TEK</span>
+                                    </div>
+                                    <p className="text-sm leading-relaxed font-medium mb-8">Established 1999. Experts in combining Chemistry of Pesticides and Biology of Pests.</p>
+                                </div>
+                                
+                                <div>
+                                    <h4 className="text-white font-black mb-10 uppercase text-xs tracking-[0.3em]">Compliance</h4>
+                                    <ul className="space-y-4 text-[10px] font-mono uppercase">
+                                        <li className="flex justify-between border-b border-white/5 pb-2"><span>GST</span> <span className="text-white">{companyInfo.regs.gst}</span></li>
+                                        <li className="flex justify-between border-b border-white/5 pb-2"><span>PAN</span> <span className="text-white">{companyInfo.regs.pan}</span></li>
+                                        <li className="flex justify-between border-b border-white/5 pb-2"><span>ESI</span> <span className="text-white">{companyInfo.regs.esi}</span></li>
+                                    </ul>
+                                </div>
+
+                                <div>
+                                    <h4 className="text-white font-black mb-10 uppercase text-xs tracking-[0.3em]">Services</h4>
+                                    <ul className="space-y-4 text-xs font-bold uppercase tracking-widest">
+                                        <li className="hover:text-blue-400 cursor-pointer flex items-center"><Icon name="chevron-right" className="w-3 h-3 mr-2 text-orange-500" /> Larvicidal Fogging</li>
+                                        <li className="hover:text-blue-400 cursor-pointer flex items-center"><Icon name="chevron-right" className="w-3 h-3 mr-2 text-orange-500" /> Soil Saturation</li>
+                                    </ul>
+                                </div>
+
+                                <div>
+                                    <h4 className="text-white font-black mb-10 uppercase text-xs tracking-[0.3em]">Contact</h4>
+                                    <div className="space-y-6">
+                                        <div>
+                                            <div className="text-[10px] font-black uppercase tracking-widest text-slate-600 mb-2">Address</div>
+                                            <p className="text-[10px] leading-relaxed font-black uppercase text-slate-300">{companyInfo.contact.address}</p>
+                                        </div>
+                                        <div>
+                                            <div className="text-[10px] font-black uppercase tracking-widest text-slate-600 mb-2">Email</div>
+                                            <a href={`mailto:${companyInfo.contact.email}`} className="text-xs font-bold text-blue-400 hover:text-white transition-colors lowercase tracking-widest">{companyInfo.contact.email}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="border-t border-white/5 pt-12 flex flex-col md:flex-row justify-between items-center gap-8 text-[10px] font-black uppercase tracking-[0.3em]">
+                                <div className="text-slate-700 text-center md:text-left uppercase tracking-[0.2em]">© 2026 HI-TEK PEST CONTROL SOLUTIONS. SINCE 1999.</div>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
